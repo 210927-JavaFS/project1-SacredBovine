@@ -2,17 +2,49 @@ package com.revature.models;
 
 import java.util.Objects;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="ers_users")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column (name="ers_users_id")
 	private int ersUserID;
+	@Column (unique=true, name="ers_username",insertable=false, updatable=false)
 	private String ersUserName;
+	@Column (name="ers_password")
 	private String ersPassword;
+	@Column (name="ers_first_name")
 	private String userFirstName;
+	@Column (name="ers_last_name")
 	private String userLastName;
+	@Column (name="ers_email")
 	private String userEmail;
-	private String userRole;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@JoinColumn(name="roleId")
+	private UserRole userRole;
+	
+	public User() {
+		super();
+	}
+	
+	
+	public User(String ersUserName, String ersPassword, String userFirstName, String userLastName, String userEmail,
+			UserRole userRole) {
+		super();
+		this.ersUserName = ersUserName;
+		this.ersPassword = ersPassword;
+		this.userFirstName = userFirstName;
+		this.userLastName = userLastName;
+		this.userEmail = userEmail;
+		this.userRole = userRole;
+	}
+
+
 	public User(int ersUserID, String ersUserName, String ersPassword, String userFirstName, String userLastName,
-			String userEmail, String userRole) {
+			String userEmail, UserRole userRole) {
 		super();
 		this.ersUserID = ersUserID;
 		this.ersUserName = ersUserName;
@@ -58,10 +90,10 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getUserRole() {
+	public UserRole getUserRole() {
 		return userRole;
 	}
-	public void setUserRole(String userRole) {
+	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
 	}
 	
@@ -73,7 +105,7 @@ public class User {
 				+ (userFirstName != null ? "userFirstName=" + userFirstName + ", " : "")
 				+ (userLastName != null ? "userLastName=" + userLastName + ", " : "")
 				+ (userEmail != null ? "userEmail=" + userEmail + ", " : "")
-				+ (userRole != null ? "userRole=" + userRole : "") + "]";
+				+ (userRole != null ? "userRole=" + userRole.toString() : "") + "]";
 	}
 	@Override
 	public int hashCode() {

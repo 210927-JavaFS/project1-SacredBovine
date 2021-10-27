@@ -1,20 +1,45 @@
 package com.revature.models;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="ers_reimbursement")
 public class Reimb {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name="reimb_id")
+	private int reimbId;
+	@Column (name="reimb_amount")
 	private int reimbAmount;
-	private String reimbSubmitted;
-	private String reimbResolved;
+	@Column (name="reimb_submitted")
+	private Timestamp reimbSubmitted;
+	@Column (name="reimb_resolved")
+	private Timestamp reimbResolved;
+	@Column (name="reimb_description")
 	private String reimbDescription;
-	private int reimbAuthor;
-	private int reimbResolver;
-	private String reimbStatus;
-	private String reimbType;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="userId", insertable=false, updatable=false)
+	private User reimbAuthor;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="userId", insertable=false, updatable=false)
+	private User reimbResolver;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@JoinColumn(name="statusId")
+	private ReimbStatus reimbStatus;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@JoinColumn(name="typeId")
+	private ReimbType reimbType;
 	
-	public Reimb(int reimbAmount, String reimbSubmitted, String reimbResolved, String reimbDescription, int reimbAuthor,
-			int reimbResolver, String reimbStatus, String reimbType) {
+	public Reimb() {
+		super();
+	}
+	
+	public Reimb(int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved, String reimbDescription,
+			User reimbAuthor, User reimbResolver, ReimbStatus reimbStatus, ReimbType reimbType) {
 		super();
 		this.reimbAmount = reimbAmount;
 		this.reimbSubmitted = reimbSubmitted;
@@ -25,90 +50,74 @@ public class Reimb {
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
-
+	public Reimb(int reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
+			ReimbType reimbType) {
+		super();
+		this.reimbAmount = reimbAmount;
+		this.reimbDescription = reimbDescription;
+		this.reimbAuthor = reimbAuthor;
+		this.reimbStatus = reimbStatus;
+		this.reimbType = reimbType;
+	}
+	public int getReimbId() {
+		return reimbId;
+	}
+	public void setReimbId(int reimbId) {
+		this.reimbId = reimbId;
+	}
 	public int getReimbAmount() {
 		return reimbAmount;
 	}
-
 	public void setReimbAmount(int reimbAmount) {
 		this.reimbAmount = reimbAmount;
 	}
-
-	public String getReimbSubmitted() {
+	public Timestamp getReimbSubmitted() {
 		return reimbSubmitted;
 	}
-
-	public void setReimbSubmitted(String reimbSubmitted) {
+	public void setReimbSubmitted(Timestamp reimbSubmitted) {
 		this.reimbSubmitted = reimbSubmitted;
 	}
-
-	public String getReimbResolved() {
+	public Timestamp getReimbResolved() {
 		return reimbResolved;
 	}
-
-	public void setReimbResolved(String reimbResolved) {
+	public void setReimbResolved(Timestamp reimbResolved) {
 		this.reimbResolved = reimbResolved;
 	}
-
 	public String getReimbDescription() {
 		return reimbDescription;
 	}
-
 	public void setReimbDescription(String reimbDescription) {
 		this.reimbDescription = reimbDescription;
 	}
-
-	public int getReimbAuthor() {
+	public User getReimbAuthor() {
 		return reimbAuthor;
 	}
-
-	public void setReimbAuthor(int reimbAuthor) {
+	public void setReimbAuthor(User reimbAuthor) {
 		this.reimbAuthor = reimbAuthor;
 	}
-
-	public int getReimbResolver() {
+	public User getReimbResolver() {
 		return reimbResolver;
 	}
-
-	public void setReimbResolver(int reimbResolver) {
+	public void setReimbResolver(User reimbResolver) {
 		this.reimbResolver = reimbResolver;
 	}
-
-	public String getReimbStatus() {
+	public ReimbStatus getReimbStatus() {
 		return reimbStatus;
 	}
-
-	public void setReimbStatus(String reimbStatus) {
+	public void setReimbStatus(ReimbStatus reimbStatus) {
 		this.reimbStatus = reimbStatus;
 	}
-
-	public String getReimbType() {
+	public ReimbType getReimbType() {
 		return reimbType;
 	}
-
-	public void setReimbType(String reimbType) {
+	public void setReimbType(ReimbType reimbType) {
 		this.reimbType = reimbType;
 	}
-	
-	
-
-	@Override
-	public String toString() {
-		return "Reimb [reimbAmount=" + reimbAmount + ", "
-				+ (reimbSubmitted != null ? "reimbSubmitted=" + reimbSubmitted + ", " : "")
-				+ (reimbResolved != null ? "reimbResolved=" + reimbResolved + ", " : "")
-				+ (reimbDescription != null ? "reimbDescription=" + reimbDescription + ", " : "") + "reimbAuthor="
-				+ reimbAuthor + ", reimbResolver=" + reimbResolver + ", "
-				+ (reimbStatus != null ? "reimbStatus=" + reimbStatus + ", " : "")
-				+ (reimbType != null ? "reimbType=" + reimbType : "") + "]";
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(reimbAmount, reimbAuthor, reimbDescription, reimbResolved, reimbResolver, reimbStatus,
-				reimbSubmitted, reimbType);
+		return Objects.hash(reimbAmount, reimbAuthor, reimbDescription, reimbId, reimbResolved, reimbResolver,
+				reimbStatus, reimbSubmitted, reimbType);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -118,12 +127,24 @@ public class Reimb {
 		if (getClass() != obj.getClass())
 			return false;
 		Reimb other = (Reimb) obj;
-		return reimbAmount == other.reimbAmount && reimbAuthor == other.reimbAuthor
-				&& Objects.equals(reimbDescription, other.reimbDescription)
-				&& Objects.equals(reimbResolved, other.reimbResolved) && reimbResolver == other.reimbResolver
-				&& Objects.equals(reimbStatus, other.reimbStatus)
+		return reimbAmount == other.reimbAmount && Objects.equals(reimbAuthor, other.reimbAuthor)
+				&& Objects.equals(reimbDescription, other.reimbDescription) && reimbId == other.reimbId
+				&& Objects.equals(reimbResolved, other.reimbResolved)
+				&& Objects.equals(reimbResolver, other.reimbResolver) && Objects.equals(reimbStatus, other.reimbStatus)
 				&& Objects.equals(reimbSubmitted, other.reimbSubmitted) && Objects.equals(reimbType, other.reimbType);
 	}
-
+	@Override
+	public String toString() {
+		return "Reimb [reimbId=" + reimbId + ", reimbAmount=" + reimbAmount + ", "
+				+ (reimbSubmitted != null ? "reimbSubmitted=" + reimbSubmitted + ", " : "")
+				+ (reimbResolved != null ? "reimbResolved=" + reimbResolved + ", " : "")
+				+ (reimbDescription != null ? "reimbDescription=" + reimbDescription + ", " : "")
+				+ (reimbAuthor != null ? "reimbAuthor=" + reimbAuthor + ", " : "")
+				+ (reimbResolver != null ? "reimbResolver=" + reimbResolver + ", " : "")
+				+ (reimbStatus != null ? "reimbStatus=" + reimbStatus + ", " : "")
+				+ (reimbType != null ? "reimbType=" + reimbType : "") + "]";
+	}
+	
+	
 
 }
