@@ -28,10 +28,10 @@ public class Reimb {
 	@JoinColumn(name="userId", insertable=false, updatable=false)
 	private User reimbResolver;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="statusId")
+	@JoinColumn(name="statusId", insertable=false, updatable=false)
 	private ReimbStatus reimbStatus;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="typeId")
+	@JoinColumn(name="typeId", insertable=false, updatable=false)
 	private ReimbType reimbType;
 	
 	public Reimb() {
@@ -59,6 +59,24 @@ public class Reimb {
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
+	
+	
+	
+	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
+			String reimbDescription, User reimbAuthor, User reimbResolver, ReimbStatus reimbStatus,
+			ReimbType reimbType) {
+		super();
+		this.reimbId = reimbId;
+		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
+		this.reimbResolved = reimbResolved;
+		this.reimbDescription = reimbDescription;
+		this.reimbAuthor = reimbAuthor;
+		this.reimbResolver = reimbResolver;
+		this.reimbStatus = reimbStatus;
+		this.reimbType = reimbType;
+	}
+
 	public int getReimbId() {
 		return reimbId;
 	}

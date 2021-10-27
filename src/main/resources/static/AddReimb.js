@@ -15,8 +15,8 @@ function getNewReimb(){
     reimbAmount:newAmount,
 	reimbSubmitted:newSubmitted,
 	reimbDescription:newDescription,
-	//reimbAuthor:1,
-	//reimbStatus:1,
+	reimbAuthor:1,
+	reimbStatus:1,
 	type:newType
   }
   return reimb;

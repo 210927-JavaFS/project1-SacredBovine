@@ -23,7 +23,7 @@ public class User {
 	@Column (name="ers_email")
 	private String userEmail;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="roleId")
+	@JoinColumn(name="roleId", insertable=false, updatable=false)
 	private UserRole userRole;
 	
 	public User() {

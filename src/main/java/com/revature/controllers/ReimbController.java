@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 
 import com.revature.models.Reimb;
+import com.revature.models.ReimbDTO;
 import com.revature.services.ReimbService;
 
 import io.javalin.Javalin;
@@ -40,7 +41,9 @@ public class ReimbController implements Controller{
 	*/
 	public Handler addReimb = (ctx) ->{
 		if(ctx.req.getSession(true)!=null) {
-		Reimb reimb = ctx.bodyAsClass(Reimb.class);
+		ReimbDTO reimbDTO = ctx.bodyAsClass(ReimbDTO.class);
+		Reimb reimb = reimbDTO.toUser();
+		System.out.println(reimb.toString());
 		if(reimbService.addReimb(reimb)) {
 			ctx.status(201);
 		}else {
