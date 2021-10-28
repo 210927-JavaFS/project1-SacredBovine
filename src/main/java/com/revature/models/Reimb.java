@@ -22,16 +22,16 @@ public class Reimb {
 	@Column (name="reimb_description")
 	private String reimbDescription;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="userId", insertable=false, updatable=false)
+	@JoinColumn(name="reimb_author", referencedColumnName="ers_users_id")
 	private User reimbAuthor;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="userId", insertable=false, updatable=false)
+	@JoinColumn(name="reimb_resolver", referencedColumnName="ers_users_id")
 	private User reimbResolver;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="statusId", insertable=false, updatable=false)
+	@JoinColumn(name="statusId")//, insertable=false, updatable=false)
 	private ReimbStatus reimbStatus;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="typeId", insertable=false, updatable=false)
+	@JoinColumn(name="typeId") //, insertable=false, updatable=false
 	private ReimbType reimbType;
 	
 	public Reimb() {
@@ -50,18 +50,42 @@ public class Reimb {
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
-	public Reimb(int reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
-			ReimbType reimbType) {
+	
+	
+	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, String reimbDescription) {
 		super();
+		this.reimbId = reimbId;
 		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
 		this.reimbDescription = reimbDescription;
-		this.reimbAuthor = reimbAuthor;
+	}
+
+
+	
+	
+	
+	
+	
+	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, String reimbDescription,
+			ReimbStatus reimbStatus, ReimbType reimbType) {
+		super();
+		this.reimbId = reimbId;
+		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
+		this.reimbDescription = reimbDescription;
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
-	
-	
-	
+
+	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, String reimbDescription, ReimbType reimbType) {
+		super();
+		this.reimbId = reimbId;
+		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
+		this.reimbDescription = reimbDescription;
+		this.reimbType = reimbType;
+	}
+
 	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
 			String reimbDescription, User reimbAuthor, User reimbResolver, ReimbStatus reimbStatus,
 			ReimbType reimbType) {

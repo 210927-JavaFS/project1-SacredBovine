@@ -17,6 +17,17 @@ public class ReimbDTO {
 	public ReimbDTO() {
 		super();
 	}
+	
+	
+	public ReimbDTO(int reimbId, int reimbAmount, Timestamp reimbSubmitted, String reimbDescription) {
+		super();
+		this.reimbId = reimbId;
+		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
+		this.reimbDescription = reimbDescription;
+	}
+
+
 	public ReimbDTO(int reimbAmount, Timestamp reimbSubmitted, String reimbDescription, int reimbAuthor,
 			int reimbStatus, int reimbType) {
 		super();
@@ -27,6 +38,8 @@ public class ReimbDTO {
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
+	
+	
 	public ReimbDTO(int reimbId, int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
 			String reimbDescription, int reimbAuthor, int reimbResolver, int reimbStatus, int reimbType) {
 		super();
@@ -125,12 +138,12 @@ public class ReimbDTO {
 	}
 	
 	public Reimb toUser() {
-		User author = new User();
+		/*User author = new User();
 		author.setErsUserID(this.reimbAuthor);
 		User resolver = new User();
 		resolver.setErsUserID(this.reimbResolver);
+		*/
 		ReimbStatus status = new ReimbStatus();
-		ReimbType type = new ReimbType();
 		switch (this.getReimbStatus()) {
 			case 1 :
 				status.setStatusId(1); 
@@ -145,6 +158,8 @@ public class ReimbDTO {
 				status.setStatus("denied");
 				break;
 		}
+		
+		ReimbType type = new ReimbType();
 		switch (this.getReimbType()) {
 			case 1: 
 				type.setTypeId(1);
@@ -164,8 +179,8 @@ public class ReimbDTO {
 				break;
 		}
 		
-		Reimb reimb = new Reimb(this.getReimbId(), this.getReimbAmount(), this.getReimbSubmitted(), this.getReimbResolved(),
-				this.getReimbDescription(), author, resolver, status, type);
+		Reimb reimb = new Reimb(this.getReimbId(), this.getReimbAmount(), this.getReimbSubmitted(),// this.getReimbResolved(),
+				this.getReimbDescription(), status, type); //, author, resolver, type
 		return reimb;
 	}
 	

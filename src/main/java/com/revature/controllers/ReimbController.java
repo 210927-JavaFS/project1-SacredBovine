@@ -14,8 +14,10 @@ public class ReimbController implements Controller{
 	private ReimbService reimbService = new ReimbService();
 	
 	public Handler findAllReimb = (ctx) -> {
-		if(ctx.req.getSession(false)!=null) {
+		System.out.println("in findAllHandler");
+		if(ctx.req.getSession(true)!=null) {
 			List<Reimb> reimbs = reimbService.findAll();
+			System.out.println(reimbs);
 			ctx.json(reimbs);
 			ctx.status(200);
 			}else {
@@ -43,6 +45,7 @@ public class ReimbController implements Controller{
 		if(ctx.req.getSession(true)!=null) {
 		ReimbDTO reimbDTO = ctx.bodyAsClass(ReimbDTO.class);
 		Reimb reimb = reimbDTO.toUser();
+		//Reimb reimb = ctx.bodyAsClass(Reimb.class);
 		System.out.println(reimb.toString());
 		if(reimbService.addReimb(reimb)) {
 			ctx.status(201);
