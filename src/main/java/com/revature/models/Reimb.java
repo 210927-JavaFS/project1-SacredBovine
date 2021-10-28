@@ -86,6 +86,17 @@ public class Reimb {
 		this.reimbType = reimbType;
 	}
 
+	public Reimb(int reimbId, int reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
+			ReimbType reimbType) {
+		super();
+		this.reimbId = reimbId;
+		this.reimbAmount = reimbAmount;
+		this.reimbDescription = reimbDescription;
+		this.reimbAuthor = reimbAuthor;
+		this.reimbStatus = reimbStatus;
+		this.reimbType = reimbType;
+	}
+
 	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
 			String reimbDescription, User reimbAuthor, User reimbResolver, ReimbStatus reimbStatus,
 			ReimbType reimbType) {

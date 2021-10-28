@@ -40,11 +40,17 @@ function populateReimbsTable(data){
 				td.innerText = date;
 			}
 			break;	
-		  case "reimbAuhor":
-			if(reimb[cell]!=null) td.innerText = `${reimb[cell].ersUserId}:  ${reimb[cell].userFirstName}`;
+		  case "reimbAuthor":
+			console.log(reimb[cell]);
+			if(reimb[cell]!=null){
+				td.innerText = `${reimb[cell].ersUserID}: ${reimb[cell].userFirstName} ${reimb[cell].userLastName}`;
+			}
 			break;
 		  case "reimbResolver":
-			if(reimb[cell]!=null) td.innerText = `${reimb[cell].ersUserId}:  ${reimb[cell].userFirstName}`;
+		  console.log(reimb[cell]);
+			if(reimb[cell]!=null){
+				td.innerText = `${reimb[cell].ersUserID}: ${reimb[cell].userFirstName} ${reimb[cell].userLastName}`;
+			}
 			break;
 		  case "reimbStatus":
 			if(reimb[cell]!=null) td.innerText = `${reimb[cell].status}`
@@ -56,14 +62,6 @@ function populateReimbsTable(data){
 			 td.innerText=reimb[cell];
 			 break;
 	  } 
-	  
-	  
-	  
-	  /*if(cell!="home"){
-        td.innerText=reimb[cell];
-      }else if(reimb[cell]){
-        td.innerText = `${reimb[cell].name}: ${reimb[cell].streetNumber} ${reimb[cell].streetName} ${reimb[cell].city } ${avenger[cell].region}, ${avenger[cell].zip} ${avenger[cell].country}`
-      }*/
       row.appendChild(td);
     }
     tbody.appendChild(row);

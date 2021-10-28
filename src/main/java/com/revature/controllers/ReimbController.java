@@ -25,22 +25,23 @@ public class ReimbController implements Controller{
 			}
 	};
 	
-	/*public Handler findById = (ctx) -> {
-		if(ctx.req.getSession(false)!=null) {
+	public Handler findByOpen = (ctx) -> {
+		if(ctx.req.getSession(true)!=null) {
 		try {
-			String idString = ctx.pathParam("ers_reimbursement");
-			int reimbId = Integer.parseInt(idString);
-			Reimb reimb = reimbService.findById(reimbId);
-			ctx.json(reimb);
+			List<Reimb> openReimbs = reimbService.findByOpen();
+			System.out.println(" \n");
+			System.out.println(" \n");
+			System.out.println("OPEN REIMBS: "+openReimbs);
+			ctx.json(openReimbs);
 			ctx.status(200);
 		}catch (Exception e) {
 			e.printStackTrace();
-			ctx.status(406);
+			ctx.status(500);
 		}}else {
-			ctx.status(401);
+			ctx.status(417);
 		}
 	};
-	*/
+
 	public Handler addReimb = (ctx) ->{
 		if(ctx.req.getSession(true)!=null) {
 		ReimbDTO reimbDTO = ctx.bodyAsClass(ReimbDTO.class);
@@ -68,6 +69,7 @@ public class ReimbController implements Controller{
 	
 	public void addRoutes(Javalin app) {
 		app.get("/reimbs", this.findAllReimb);
+		app.get("/open", this.findByOpen);
 		//app.get("/reimbs/:ers_reimbursement", this.findById);
 		app.post("/reimbs", this.addReimb);
 		//app.put("/reimbs", this.updateReimb);

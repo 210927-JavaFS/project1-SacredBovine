@@ -43,6 +43,23 @@ private ReimbDAO reimbDAO = new ReimbDAOImpl();
 		}
 	}
 	
+	public List<Reimb> findByOpen() {
+		List<Reimb> reimbs = reimbDAO.findAll();
+		List<Reimb> openReimbs = new ArrayList<Reimb>();
+		if(reimbs!=null) {
+			System.out.println("============================ in dao not null");
+			for(int i=0; i<reimbs.size(); i++) {
+				System.out.println("============: "+reimbs.get(i).getReimbStatus().getStatus());
+				if(reimbs.get(i).getReimbStatus().getStatus().equals("pending")) {
+					openReimbs.add(reimbs.get(i));
+				}
+			}
+			return openReimbs;
+		}else {
+			return null;
+		}
+	}
+	
 	public boolean addReimb(Reimb reimb) {
 		log.debug("in add Reimb Service with :" + reimb.toString());
 		return reimbDAO.addReimb(reimb);
