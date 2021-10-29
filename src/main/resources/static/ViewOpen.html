@@ -16,20 +16,21 @@
 			<tr>
 				<th class="col-med-1">Reimbursement ID</th>
 				<th class="col-med-1">Amount</th>
-				<th class="col-med-1">Date Submitted</th>
-				<th class="col-med-1">Date Resolved</th>
-				<th class="col-med-2">Description</th>
-				<th class="col-med-1">Requested By</th>
-				<th class="col-med-1">Approved By</th>  
+				<th class="col-med-2">Date Submitted</th>
+				<th class="col-med-4">Description</th>
+				<th class="col-med-2">Requested By</th>
 				<th class="col-med-1">Status</th>
 				<th class="col-med-1">Type</th>
-				<th class="col-med-1"></th>
-				<th class="col-med-1"></th>
 			</tr>
 		</thead>
 		<tbody id="reimbBody"></tbody>
 	</table>
-  </table>
+  <form>
+	<label for="reimbId">Reimbursement id :</label>
+	<input type="text" id="reimbId" name="reimbId">
+	<button type="button" class="btn btn-success" id="approveBtn">Approve</button>
+	<button type="button" class="btn btn-danger" id="denyBtn">Deny</button>
+  </form>
   <br>
 	
     <script src="ViewOpen.js"></script>

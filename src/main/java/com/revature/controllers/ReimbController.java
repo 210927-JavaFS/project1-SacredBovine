@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import java.util.List;
 
+
 import com.revature.models.Reimb;
 import com.revature.models.ReimbDTO;
 import com.revature.services.ReimbService;
@@ -17,12 +18,30 @@ public class ReimbController implements Controller{
 		System.out.println("in findAllHandler");
 		if(ctx.req.getSession(true)!=null) {
 			List<Reimb> reimbs = reimbService.findAll();
-			System.out.println(reimbs);
+			//System.out.println(reimbs);
 			ctx.json(reimbs);
 			ctx.status(200);
 			}else {
 				ctx.status(417);
 			}
+	};
+	
+	public Handler findById = (ctx) -> {
+		if (ctx.req.getSession(true) != null) {
+			try {
+				String idString = ctx.pathParam("reimbId");
+				int id = Integer.parseInt(idString);
+				Reimb reimb = reimbService.findById(id);
+				System.out.println(reimb);
+				ctx.json(reimb);
+				ctx.status(200);
+			} catch (Exception e) {
+				e.printStackTrace();
+				ctx.status(500);
+			}
+		} else {
+			ctx.status(401);
+		}
 	};
 	
 	public Handler findByOpen = (ctx) -> {
@@ -56,23 +75,25 @@ public class ReimbController implements Controller{
 			ctx.status(404);
 		}
 	};
-	/*
+	
 	public Handler updateReimb = (ctx)->{
-		if(ctx.req.getSession(false)!=null) {
+		if(ctx.req.getSession(true)!=null) {
+		/*ReimbDTO reimbDTO = ctx.bodyAsClass(ReimbDTO.class);
+		Reimb reimb = reimbDTO.toUser();*/
 		Reimb reimb = ctx.bodyAsClass(Reimb.class);
 		if(reimbService.updateReimb(reimb)) {
 			ctx.status(202);
 		}else {
 			ctx.status(400);
 		}}
-	};*/
+	};
 	
 	public void addRoutes(Javalin app) {
 		app.get("/reimbs", this.findAllReimb);
 		app.get("/open", this.findByOpen);
-		//app.get("/reimbs/:ers_reimbursement", this.findById);
+		app.get("/reimbs/:reimbId", this.findById);
 		app.post("/reimbs", this.addReimb);
-		//app.put("/reimbs", this.updateReimb);
+		app.put("/reimbs", this.updateReimb);
 
 	}
 }
