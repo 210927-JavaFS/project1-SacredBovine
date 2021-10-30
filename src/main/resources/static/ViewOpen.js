@@ -17,10 +17,9 @@ async function getById(id){
 	  console.log("encountered error");
 	  return false;
   }
-}
-  
+} 
 async function getOpen(){
-  let response = await fetch(URL+"open");
+  let response = await fetch(URL+"reimbs/open");
   //console.log(response);
   if(response.status===200){
     let data = await response.json();
@@ -29,7 +28,6 @@ async function getOpen(){
     console.log("Reimbs not available. "+response);
   }
 }
-
 async function updateReimb(reimb){
 	if(reimb!=null){
 		//console.log(reimb);
@@ -39,6 +37,35 @@ async function updateReimb(reimb){
 			body:JSON.stringify(reimb)
 		});
 	}
+}
+async function approveReimb(){
+  let id = document.getElementById("reimbId").value;
+ // console.log(JSON.stringify(reimb));
+  if(id != null){
+	let reimb = await getById(id);
+	console.log(reimb);
+	let ts=Date.now();
+	reimb.reimbStatus={
+				statusId: 2,
+				status: 'approved'
+	};
+	reimb.reimbResolved=ts;
+	console.log(reimb);
+	updateReimb(reimb);
+  }
+}
+async function denyReimb(){
+  let id = document.getElementById("reimbId").value;
+ // console.log(JSON.stringify(reimb));
+  if(id != null){
+	let reimb = await getById(id);
+	//console.log(reimb);
+	reimb.reimbStatus={
+				statusId: 3,
+				status: 'denied'
+	};
+	updateReimb(reimb);
+  }
 }
 
 function populateReimbsTable(data){
@@ -100,32 +127,3 @@ function populateReimbsTable(data){
     tbody.appendChild(row);
   }
 } 
-
-
-async function approveReimb(){
-  let id = document.getElementById("reimbId").value;
- // console.log(JSON.stringify(reimb));
-  if(id != null){
-	let reimb = await getById(id);
-	console.log(reimb);
-	reimb.reimbStatus={
-				statusId: 2,
-				status: 'approved'
-	};
-	console.log(reimb);
-	updateReimb(reimb);
-  }
-}
-async function denyReimb(){
-  let id = document.getElementById("reimbId").value;
- // console.log(JSON.stringify(reimb));
-  if(id != null){
-	let reimb = await getById(id);
-	//console.log(reimb);
-	reimb.reimbStatus={
-				statusId: 3,
-				status: 'denied'
-	};
-	updateReimb(reimb);
-  }
-}

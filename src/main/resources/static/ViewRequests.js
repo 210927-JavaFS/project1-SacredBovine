@@ -3,9 +3,6 @@ const URL = "http://localhost:8081/";
 let reimbButton = document.getElementById("viewReimbsButton");
 reimbButton.onclick = getReimbs;
 
-
-
-
 async function getReimbs(){
   let response = await fetch(URL+"reimbs", {credentials:"include"});
   

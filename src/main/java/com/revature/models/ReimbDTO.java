@@ -6,7 +6,7 @@ import java.util.Objects;
 public class ReimbDTO {
 
 	private int reimbId;
-	private int reimbAmount;
+	private double reimbAmount;
 	private Timestamp reimbSubmitted;
 	private Timestamp reimbResolved;
 	private String reimbDescription;
@@ -19,7 +19,7 @@ public class ReimbDTO {
 	}
 	
 	
-	public ReimbDTO(int reimbId, int reimbAmount, Timestamp reimbSubmitted, String reimbDescription) {
+	public ReimbDTO(int reimbId, double reimbAmount, Timestamp reimbSubmitted, String reimbDescription) {
 		super();
 		this.reimbId = reimbId;
 		this.reimbAmount = reimbAmount;
@@ -28,7 +28,7 @@ public class ReimbDTO {
 	}
 
 
-	public ReimbDTO(int reimbAmount, Timestamp reimbSubmitted, String reimbDescription, int reimbAuthor,
+	public ReimbDTO(double reimbAmount, Timestamp reimbSubmitted, String reimbDescription, int reimbAuthor,
 			int reimbStatus, int reimbType) {
 		super();
 		this.reimbAmount = reimbAmount;
@@ -40,7 +40,7 @@ public class ReimbDTO {
 	}
 	
 	
-	public ReimbDTO(int reimbId, int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
+	public ReimbDTO(int reimbId, double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
 			String reimbDescription, int reimbAuthor, int reimbResolver, int reimbStatus, int reimbType) {
 		super();
 		this.reimbId = reimbId;
@@ -59,10 +59,10 @@ public class ReimbDTO {
 	public void setReimbId(int reimbId) {
 		this.reimbId = reimbId;
 	}
-	public int getReimbAmount() {
+	public double getReimbAmount() {
 		return reimbAmount;
 	}
-	public void setReimbAmount(int reimbAmount) {
+	public void setReimbAmount(double reimbAmount) {
 		this.reimbAmount = reimbAmount;
 	}
 	public Timestamp getReimbSubmitted() {
@@ -138,11 +138,6 @@ public class ReimbDTO {
 	}
 	
 	public Reimb toUser() {
-		/*User author = new User();
-		author.setErsUserID(this.reimbAuthor);
-		User resolver = new User();
-		resolver.setErsUserID(this.reimbResolver);
-		*/
 		ReimbStatus status = new ReimbStatus();
 		switch (this.getReimbStatus()) {
 			case 1 :

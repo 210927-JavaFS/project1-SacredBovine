@@ -14,7 +14,7 @@ public class Reimb {
 	@Column (name="reimb_id")
 	private int reimbId;
 	@Column (name="reimb_amount")
-	private int reimbAmount;
+	private double reimbAmount;
 	@Column (name="reimb_submitted")
 	private Timestamp reimbSubmitted;
 	@Column (name="reimb_resolved")
@@ -38,7 +38,7 @@ public class Reimb {
 		super();
 	}
 	
-	public Reimb(int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved, String reimbDescription,
+	public Reimb(double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved, String reimbDescription,
 			User reimbAuthor, User reimbResolver, ReimbStatus reimbStatus, ReimbType reimbType) {
 		super();
 		this.reimbAmount = reimbAmount;
@@ -51,22 +51,15 @@ public class Reimb {
 		this.reimbType = reimbType;
 	}
 	
-	
-	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, String reimbDescription) {
+	public Reimb(int reimbId, double reimbAmount, Timestamp reimbSubmitted, String reimbDescription) {
 		super();
 		this.reimbId = reimbId;
 		this.reimbAmount = reimbAmount;
 		this.reimbSubmitted = reimbSubmitted;
 		this.reimbDescription = reimbDescription;
 	}
-
-
 	
-	
-	
-	
-	
-	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, String reimbDescription,
+	public Reimb(int reimbId, double reimbAmount, Timestamp reimbSubmitted, String reimbDescription,
 			ReimbStatus reimbStatus, ReimbType reimbType) {
 		super();
 		this.reimbId = reimbId;
@@ -77,7 +70,7 @@ public class Reimb {
 		this.reimbType = reimbType;
 	}
 
-	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, String reimbDescription, ReimbType reimbType) {
+	public Reimb(int reimbId, double reimbAmount, Timestamp reimbSubmitted, String reimbDescription, ReimbType reimbType) {
 		super();
 		this.reimbId = reimbId;
 		this.reimbAmount = reimbAmount;
@@ -86,7 +79,7 @@ public class Reimb {
 		this.reimbType = reimbType;
 	}
 
-	public Reimb(int reimbId, int reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
+	public Reimb(int reimbId, double reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
 			ReimbType reimbType) {
 		super();
 		this.reimbId = reimbId;
@@ -97,7 +90,7 @@ public class Reimb {
 		this.reimbType = reimbType;
 	}
 
-	public Reimb(int reimbId, int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
+	public Reimb(int reimbId, double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
 			String reimbDescription, User reimbAuthor, User reimbResolver, ReimbStatus reimbStatus,
 			ReimbType reimbType) {
 		super();
@@ -118,10 +111,10 @@ public class Reimb {
 	public void setReimbId(int reimbId) {
 		this.reimbId = reimbId;
 	}
-	public int getReimbAmount() {
+	public double getReimbAmount() {
 		return reimbAmount;
 	}
-	public void setReimbAmount(int reimbAmount) {
+	public void setReimbAmount(double reimbAmount) {
 		this.reimbAmount = reimbAmount;
 	}
 	public Timestamp getReimbSubmitted() {
