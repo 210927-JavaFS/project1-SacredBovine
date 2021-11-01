@@ -22,10 +22,6 @@ function verifySession(){
 	}
 }
 
-function backToMain(){
-	window.location = 'http://localhost:8081/employee.html';
-}
-
 function getCookie(val) {
   let name = val + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -78,6 +74,7 @@ async function addReimb(){
   }}else{
 	console.log("Something went wrong creating the request.");
   }
+  back();
 }
 
 function getNewReimb(){

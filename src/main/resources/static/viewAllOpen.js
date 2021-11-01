@@ -47,7 +47,6 @@ async function getByReimbId(reimbId){
   let reimbResponse = await fetch(URL+"reimbs/"+ reimbId);
   if (reimbResponse.status===200){
 	  let reimb = await reimbResponse.json();
-	  console.log(reimb);
 	  return reimb;
   }else{
 	  console.log("encountered error");
@@ -58,9 +57,7 @@ async function getByReimbId(reimbId){
 async function getByUserId(userId){
   let userResponse = await fetch(URL+"user/"+ userId);
   if (userResponse.status===200){
-	  console.log(userResponse);
 	  let reimbResolver = await userResponse.json();
-	  console.log("getByUserId " + reimbResolver);
 	  return reimbResolver;
   }else{
 	  console.log("encountered error");
@@ -123,8 +120,6 @@ async function denyReimb(){
 }
 
 function toUser(data){
-	console.log("toUser ");
-	console.log(data);
 	let user = {
 			ersUserId:data.ersUserId,
 			ersUserName:data.ersUserName,

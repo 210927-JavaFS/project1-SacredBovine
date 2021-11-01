@@ -21,8 +21,8 @@ function verifySession(){
 	}
 	if (getCookie("role")=="1"){
 		window.location = 'http://localhost:8081/employee.html';
-	}
-	else window.location = 'http://localhost:8081/login.html';
+	}else if(getCookie("role")=="2"){
+	}else window.location = 'http://localhost:8081/login.html';
 }
 function getCookie(val) {
   let name = val + "=";

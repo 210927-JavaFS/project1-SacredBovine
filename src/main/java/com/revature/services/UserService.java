@@ -12,11 +12,9 @@ public class UserService {
 	private UserDAO userDAO = new UserDAOImpl();
 	
 	public LoginRes login(LoginReq loginReq) {
-		//System.out.println(loginReq);
 		LoginRes loginRes = null; 
 		List<User> users= userDAO.findAll();
 		for(User user:users) {
-			//System.out.println(user);
 			if(user.getErsUserName().equals(loginReq.getUsername())) {
 				if(user.getErsPassword().equals(loginReq.getPassword()))
 				{

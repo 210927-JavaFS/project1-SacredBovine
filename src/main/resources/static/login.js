@@ -11,8 +11,8 @@ async function login(){
 
   let response = await fetch(URL+"user/login", {
     method:"POST",
-    body:JSON.stringify(loginReq)
-    //credentials:"include" //This will save the cookie when we receive it. 
+    body:JSON.stringify(loginReq),
+    credentials:"include" 
   });
   if(response.status===200){
     let data = await response.json();
