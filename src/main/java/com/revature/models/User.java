@@ -11,7 +11,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column (name="ers_users_id")
-	private int ersUserID;
+	private int ersUserId;
 	@Column (unique=true, name="ers_username",insertable=false, updatable=false)
 	private String ersUserName;
 	@Column (name="ers_password")
@@ -23,7 +23,7 @@ public class User {
 	@Column (name="ers_email")
 	private String userEmail;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="roleId")
+	@JoinColumn(name="roleId", insertable=false, updatable=false)
 	private UserRole userRole;
 	
 	public User() {
@@ -43,10 +43,10 @@ public class User {
 	}
 
 
-	public User(int ersUserID, String ersUserName, String ersPassword, String userFirstName, String userLastName,
+	public User(int ersUserId, String ersUserName, String ersPassword, String userFirstName, String userLastName,
 			String userEmail, UserRole userRole) {
 		super();
-		this.ersUserID = ersUserID;
+		this.ersUserId = ersUserId;
 		this.ersUserName = ersUserName;
 		this.ersPassword = ersPassword;
 		this.userFirstName = userFirstName;
@@ -54,11 +54,11 @@ public class User {
 		this.userEmail = userEmail;
 		this.userRole = userRole;
 	}
-	public int getErsUserID() {
-		return ersUserID;
+	public int getErsUserId() {
+		return ersUserId;
 	}
-	public void setErsUserID(int ersUserID) {
-		this.ersUserID = ersUserID;
+	public void setErsUserId(int ersUserID) {
+		this.ersUserId = ersUserID;
 	}
 	public String getErsUserName() {
 		return ersUserName;
@@ -101,7 +101,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [ersUserID=" + ersUserID + ", " + (ersUserName != null ? "ersUserName=" + ersUserName + ", " : "")
+		return "User [ersUserID=" + ersUserId + ", " + (ersUserName != null ? "ersUserName=" + ersUserName + ", " : "")
 				+ (userFirstName != null ? "userFirstName=" + userFirstName + ", " : "")
 				+ (userLastName != null ? "userLastName=" + userLastName + ", " : "")
 				+ (userEmail != null ? "userEmail=" + userEmail + ", " : "")
@@ -109,7 +109,7 @@ public class User {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(ersPassword, ersUserID, ersUserName, userEmail, userFirstName, userLastName, userRole);
+		return Objects.hash(ersPassword, ersUserId, ersUserName, userEmail, userFirstName, userLastName, userRole);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -120,7 +120,7 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(ersPassword, other.ersPassword) && ersUserID == other.ersUserID
+		return Objects.equals(ersPassword, other.ersPassword) && ersUserId == other.ersUserId
 				&& Objects.equals(ersUserName, other.ersUserName) && Objects.equals(userEmail, other.userEmail)
 				&& Objects.equals(userFirstName, other.userFirstName)
 				&& Objects.equals(userLastName, other.userLastName) && Objects.equals(userRole, other.userRole);

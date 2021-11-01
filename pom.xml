@@ -96,6 +96,14 @@
             <artifactId>javalin</artifactId>
             <version>3.13.12</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
+		<dependency>
+   			<groupId>org.junit.platform</groupId>
+   			<artifactId>junit-platform-runner</artifactId>
+    		<version>1.8.1</version>
+   			<scope>test</scope>
+		</dependency>
+        
 		 
 	</dependencies>
 

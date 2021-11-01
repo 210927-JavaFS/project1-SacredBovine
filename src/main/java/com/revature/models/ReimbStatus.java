@@ -14,6 +14,9 @@ public class ReimbStatus {
 	@Column (name="reimb_status")
 	private String status;
 	
+	public ReimbStatus() {
+		super();
+	}
 	public ReimbStatus(int statusId, String status) {
 		super();
 		this.statusId = statusId;

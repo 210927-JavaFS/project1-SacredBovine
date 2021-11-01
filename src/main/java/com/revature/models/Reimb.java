@@ -14,7 +14,7 @@ public class Reimb {
 	@Column (name="reimb_id")
 	private int reimbId;
 	@Column (name="reimb_amount")
-	private int reimbAmount;
+	private double reimbAmount;
 	@Column (name="reimb_submitted")
 	private Timestamp reimbSubmitted;
 	@Column (name="reimb_resolved")
@@ -22,35 +22,25 @@ public class Reimb {
 	@Column (name="reimb_description")
 	private String reimbDescription;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="userId", insertable=false, updatable=false)
+	@JoinColumn(name="reimb_author", referencedColumnName="ers_users_id")
 	private User reimbAuthor;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="userId", insertable=false, updatable=false)
+	@JoinColumn(name="reimb_resolver", referencedColumnName="ers_users_id")
 	private User reimbResolver;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="statusId")
+	@JoinColumn(name="statusId")//, insertable=false, updatable=false)
 	private ReimbStatus reimbStatus;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="typeId")
+	@JoinColumn(name="typeId") //, insertable=false, updatable=false
 	private ReimbType reimbType;
 	
 	public Reimb() {
 		super();
 	}
 	
-	public Reimb(int reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved, String reimbDescription,
-			User reimbAuthor, User reimbResolver, ReimbStatus reimbStatus, ReimbType reimbType) {
-		super();
-		this.reimbAmount = reimbAmount;
-		this.reimbSubmitted = reimbSubmitted;
-		this.reimbResolved = reimbResolved;
-		this.reimbDescription = reimbDescription;
-		this.reimbAuthor = reimbAuthor;
-		this.reimbResolver = reimbResolver;
-		this.reimbStatus = reimbStatus;
-		this.reimbType = reimbType;
-	}
-	public Reimb(int reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
+	
+
+	public Reimb(double reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
 			ReimbType reimbType) {
 		super();
 		this.reimbAmount = reimbAmount;
@@ -59,16 +49,45 @@ public class Reimb {
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
+
+
+
+	public Reimb(int reimbId, double reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
+			ReimbType reimbType) {
+		super();
+		this.reimbId = reimbId;
+		this.reimbAmount = reimbAmount;
+		this.reimbDescription = reimbDescription;
+		this.reimbAuthor = reimbAuthor;
+		this.reimbStatus = reimbStatus;
+		this.reimbType = reimbType;
+	}
+
+
+
+	public Reimb(double reimbAmount, Timestamp reimbSubmitted, String reimbDescription, User reimbAuthor,
+			ReimbStatus reimbStatus, ReimbType reimbType) {
+		super();
+		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
+		this.reimbDescription = reimbDescription;
+		this.reimbAuthor = reimbAuthor;
+		this.reimbStatus = reimbStatus;
+		this.reimbType = reimbType;
+	}
+
+
+
 	public int getReimbId() {
 		return reimbId;
 	}
 	public void setReimbId(int reimbId) {
 		this.reimbId = reimbId;
 	}
-	public int getReimbAmount() {
+	public double getReimbAmount() {
 		return reimbAmount;
 	}
-	public void setReimbAmount(int reimbAmount) {
+	public void setReimbAmount(double reimbAmount) {
 		this.reimbAmount = reimbAmount;
 	}
 	public Timestamp getReimbSubmitted() {
