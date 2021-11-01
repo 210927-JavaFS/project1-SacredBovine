@@ -1,4 +1,4 @@
-const URL = "http://localhost:8081/";
+git dconst URL = "http://localhost:8081/";
 window.onload = verifySession();
 let addReimbBtn = document.getElementById('addReimbBtn');
 addReimbBtn.onclick = addReimb;
@@ -41,7 +41,7 @@ function getCookie(val) {
 function isMoney(input){
 	try{
 		let remainder = (input*100)%1;
-		if (remainder==0){ 
+		if (remainder==0){
 			return true;
 		}
 		else{
@@ -79,7 +79,7 @@ async function addReimb(){
 
 function getNewReimb(){
   if(document.querySelector('input[name="type"]:checked').value != null){
-	let newAmount = document.getElementById("amount").value; 
+	let newAmount = document.getElementById("amount").value;
 	if(isMoney(newAmount)){
 		let newDescription = document.getElementById("description").value;
 		let newSubmitted = Date.now();
