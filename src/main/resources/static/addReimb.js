@@ -1,4 +1,4 @@
-git dconst URL = "http://localhost:8081/";
+const URL = "http://localhost:8081/";
 window.onload = verifySession();
 let addReimbBtn = document.getElementById('addReimbBtn');
 addReimbBtn.onclick = addReimb;
