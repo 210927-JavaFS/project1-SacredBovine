@@ -38,46 +38,19 @@ public class Reimb {
 		super();
 	}
 	
-	public Reimb(double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved, String reimbDescription,
-			User reimbAuthor, User reimbResolver, ReimbStatus reimbStatus, ReimbType reimbType) {
+	
+
+	public Reimb(double reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
+			ReimbType reimbType) {
 		super();
 		this.reimbAmount = reimbAmount;
-		this.reimbSubmitted = reimbSubmitted;
-		this.reimbResolved = reimbResolved;
 		this.reimbDescription = reimbDescription;
 		this.reimbAuthor = reimbAuthor;
-		this.reimbResolver = reimbResolver;
-		this.reimbStatus = reimbStatus;
-		this.reimbType = reimbType;
-	}
-	
-	public Reimb(int reimbId, double reimbAmount, Timestamp reimbSubmitted, String reimbDescription) {
-		super();
-		this.reimbId = reimbId;
-		this.reimbAmount = reimbAmount;
-		this.reimbSubmitted = reimbSubmitted;
-		this.reimbDescription = reimbDescription;
-	}
-	
-	public Reimb(int reimbId, double reimbAmount, Timestamp reimbSubmitted, String reimbDescription,
-			ReimbStatus reimbStatus, ReimbType reimbType) {
-		super();
-		this.reimbId = reimbId;
-		this.reimbAmount = reimbAmount;
-		this.reimbSubmitted = reimbSubmitted;
-		this.reimbDescription = reimbDescription;
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
 
-	public Reimb(int reimbId, double reimbAmount, Timestamp reimbSubmitted, String reimbDescription, ReimbType reimbType) {
-		super();
-		this.reimbId = reimbId;
-		this.reimbAmount = reimbAmount;
-		this.reimbSubmitted = reimbSubmitted;
-		this.reimbDescription = reimbDescription;
-		this.reimbType = reimbType;
-	}
+
 
 	public Reimb(int reimbId, double reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
 			ReimbType reimbType) {
@@ -90,20 +63,20 @@ public class Reimb {
 		this.reimbType = reimbType;
 	}
 
-	public Reimb(int reimbId, double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
-			String reimbDescription, User reimbAuthor, User reimbResolver, ReimbStatus reimbStatus,
-			ReimbType reimbType) {
+
+
+	public Reimb(double reimbAmount, Timestamp reimbSubmitted, String reimbDescription, User reimbAuthor,
+			ReimbStatus reimbStatus, ReimbType reimbType) {
 		super();
-		this.reimbId = reimbId;
 		this.reimbAmount = reimbAmount;
 		this.reimbSubmitted = reimbSubmitted;
-		this.reimbResolved = reimbResolved;
 		this.reimbDescription = reimbDescription;
 		this.reimbAuthor = reimbAuthor;
-		this.reimbResolver = reimbResolver;
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
+
+
 
 	public int getReimbId() {
 		return reimbId;

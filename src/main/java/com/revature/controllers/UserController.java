@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.revature.models.LoginReq;
 import com.revature.models.LoginRes;
+import com.revature.models.Reimb;
+import com.revature.models.User;
 import com.revature.services.UserService;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
@@ -28,9 +30,28 @@ public class UserController implements Controller {
 		}
 	};
 	
+	public Handler findById = (ctx) -> {
+		if (ctx.req.getSession(true) != null) {
+			try {
+				String idString = ctx.pathParam("userId");
+				int id = Integer.parseInt(idString);
+				User user = userService.findById(id);
+				ctx.json(user);
+				ctx.status(200);
+				log.debug("UserController findById success");
+			} catch (Exception e) {
+				log.warn(e.getStackTrace().toString());
+				ctx.status(500);
+			}
+		} else {
+			ctx.status(401);
+		}
+	};
+	
 	@Override
 	public void addRoutes(Javalin app) {
-		app.post("/login", this.login);
+		app.get("/user/:userId", this.findById);
+		app.post("/user/login", this.login);
 	}
 
 }

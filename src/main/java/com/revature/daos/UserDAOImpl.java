@@ -17,4 +17,8 @@ public class UserDAOImpl implements UserDAO {
 		Session session = HibernateUtil.getSession();
 		return session.createQuery("FROM User").list();
 	}
+	public User findById(int userId) {
+		Session session = HibernateUtil.getSession();
+		return session.get(User.class, userId);
+	}
 }

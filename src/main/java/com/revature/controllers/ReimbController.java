@@ -75,7 +75,7 @@ public class ReimbController implements Controller{
 	public Handler addReimb = (ctx) ->{
 		if(ctx.req.getSession(true)!=null) {
 		ReimbDTO reimbDTO = ctx.bodyAsClass(ReimbDTO.class);
-		Reimb reimb = reimbDTO.toUser();
+		Reimb reimb = reimbService.toReimb(reimbDTO);
 		System.out.println(reimb.toString());
 		if(reimbService.addReimb(reimb)) {
 			ctx.status(201);

@@ -20,7 +20,6 @@ async function getById(id){
 } 
 async function getOpen(){
   let response = await fetch(URL+"reimbs/open");
-  //console.log(response);
   if(response.status===200){
     let data = await response.json();
     populateReimbsTable(data);
@@ -74,7 +73,6 @@ function populateReimbsTable(data){
   tbody.innerHTML="";
 
   for(let reimb of data){
-	//  console.log(reimb);
     let row = document.createElement("tr");
     for(let cell in reimb){ 
 	  let td = document.createElement("td");

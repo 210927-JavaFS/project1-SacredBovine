@@ -29,7 +29,12 @@ INSERT INTO ers_user_roles (ers_user_role_id, user_role)
 INSERT INTO ers_users (ers_users_id, ers_username, ers_password, ers_first_name, ers_last_name, ers_email, roleid)
 	VALUES(2,'manager', 'password', 'Erwin', 'Schrodinger', 'untilObserved@maybe.com', 2);
 
+INSERT INTO ers_users ( ers_username, ers_password, ers_first_name, ers_last_name, ers_email, roleid)
+	VALUES('test user', '-1145958493', 'Tester', 'Testington', 'test@test.com', 2);
+
 INSERT INTO ers_reimbursement (reimb_id,reimb_amount,reimb_description,reimb_author,reimb_status_id, reimb_type_id)
 	VALUES(1,50,'Hungry',1,1,3);
 
 DROP TABLE ers_reimbursement;
+
+DELETE FROM ers_reimbursement WHERE reimb_author = 3;

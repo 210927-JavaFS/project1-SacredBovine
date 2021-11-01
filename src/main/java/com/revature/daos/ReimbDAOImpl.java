@@ -18,7 +18,7 @@ public class ReimbDAOImpl implements ReimbDAO {
 	}	
 	public Reimb findById(int reimbId) {
 		Session session = HibernateUtil.getSession();
-		return session.get(Reimb.class,reimbId);
+		return session.get(Reimb.class, reimbId);
 	}
 	
 	public boolean addReimb(Reimb reimb) {

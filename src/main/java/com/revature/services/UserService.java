@@ -21,12 +21,15 @@ public class UserService {
 				if(user.getErsPassword().equals(loginReq.getPassword()))
 				{
 					System.out.println(user);
-					loginRes = new LoginRes(user.getErsUserID(), 
+					loginRes = new LoginRes(user.getErsUserId(), 
 							user.getUserFirstName()+" "+user.getUserLastName(),
 							user.getUserRole().getRoleId());
 				}
 			}
 		}
 		return loginRes;
+	}
+	public User findById(int userId) {
+		return userDAO.findById(userId);
 	}
 }

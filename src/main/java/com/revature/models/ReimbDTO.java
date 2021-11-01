@@ -14,20 +14,10 @@ public class ReimbDTO {
 	private int reimbResolver;
 	private int reimbStatus;
 	private int reimbType;
+	
 	public ReimbDTO() {
 		super();
 	}
-	
-	
-	public ReimbDTO(int reimbId, double reimbAmount, Timestamp reimbSubmitted, String reimbDescription) {
-		super();
-		this.reimbId = reimbId;
-		this.reimbAmount = reimbAmount;
-		this.reimbSubmitted = reimbSubmitted;
-		this.reimbDescription = reimbDescription;
-	}
-
-
 	public ReimbDTO(double reimbAmount, Timestamp reimbSubmitted, String reimbDescription, int reimbAuthor,
 			int reimbStatus, int reimbType) {
 		super();
@@ -39,20 +29,6 @@ public class ReimbDTO {
 		this.reimbType = reimbType;
 	}
 	
-	
-	public ReimbDTO(int reimbId, double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
-			String reimbDescription, int reimbAuthor, int reimbResolver, int reimbStatus, int reimbType) {
-		super();
-		this.reimbId = reimbId;
-		this.reimbAmount = reimbAmount;
-		this.reimbSubmitted = reimbSubmitted;
-		this.reimbResolved = reimbResolved;
-		this.reimbDescription = reimbDescription;
-		this.reimbAuthor = reimbAuthor;
-		this.reimbResolver = reimbResolver;
-		this.reimbStatus = reimbStatus;
-		this.reimbType = reimbType;
-	}
 	public int getReimbId() {
 		return reimbId;
 	}
@@ -136,48 +112,5 @@ public class ReimbDTO {
 				+ reimbAuthor + ", reimbResolver=" + reimbResolver + ", reimbStatus=" + reimbStatus + ", reimbType="
 				+ reimbType + "]";
 	}
-	
-	public Reimb toUser() {
-		ReimbStatus status = new ReimbStatus();
-		switch (this.getReimbStatus()) {
-			case 1 :
-				status.setStatusId(1); 
-				status.setStatus("pending");
-				break;
-			case 2 :
-				status.setStatusId(2); 
-				status.setStatus("approved");
-				break;
-			case 3 :
-				status.setStatusId(3); 
-				status.setStatus("denied");
-				break;
-		}
-		
-		ReimbType type = new ReimbType();
-		switch (this.getReimbType()) {
-			case 1: 
-				type.setTypeId(1);
-				type.setType("lodging");
-				break;
-			case 2: 
-				type.setTypeId(2);
-				type.setType("travel");
-				break;
-			case 3: 
-				type.setTypeId(3);
-				type.setType("food");
-				break;
-			case 4: 
-				type.setTypeId(4);
-				type.setType("other");
-				break;
-		}
-		
-		Reimb reimb = new Reimb(this.getReimbId(), this.getReimbAmount(), this.getReimbSubmitted(),// this.getReimbResolved(),
-				this.getReimbDescription(), status, type); //, author, resolver, type
-		return reimb;
-	}
-	
 	
 }

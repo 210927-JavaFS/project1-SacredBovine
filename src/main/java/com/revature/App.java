@@ -11,7 +11,6 @@ public class App {
 	private static Javalin app;
 
 	public static void main(String[] args) {	
-				
 		app = Javalin.create((config)->{
 			config.addStaticFiles("/static", Location.CLASSPATH);
 		});

@@ -1,6 +1,5 @@
 const URL = "http://localhost:8081/";
 
-
 let loginBtn = document.getElementById("loginBtn");
 loginBtn.onclick = login;
 
@@ -9,22 +8,23 @@ async function login(){
     username:document.getElementById("username").value,
     password:document.getElementById("password").value
   }
-  console.log(loginReq);
-  let response = await fetch(URL+"login", {
+
+  let response = await fetch(URL+"user/login", {
     method:"POST",
-    body:JSON.stringify(loginReq),
-    credentials:"include" //This will save the cookie when we receive it. 
+    body:JSON.stringify(loginReq)
+    //credentials:"include" //This will save the cookie when we receive it. 
   });
   if(response.status===200){
     let data = await response.json();
 	let user={
-		userID:data.id,
+		userId:data.id,
 		username:data.name,
 		userRole:data.role
 	}
-	document.cookie = "id="+user.userID;
-	document.cookie = "name="+user.username;
-	document.cookie = "role="+user.userRole;
+	var expires = (new Date(Date.now()+ 60)).toUTCString();
+	document.cookie = "id="+user.userId; "expires="+expires; path="http://localhost";
+	document.cookie = "name="+user.username; "expires="+expires; path="http://localhost";
+	document.cookie = "role="+user.userRole; "expires="+expires; path="http://localhost";
 	redirect(user);
   }
   else{
@@ -52,11 +52,10 @@ function getCookie(val) {
 }
 
 function redirect(user){
-	console.log("id: "+getCookie("id")+" name: "+getCookie("name")+" role: "+getCookie("role"));
 	if (user.userRole == 1){
-		//redirect to employee page
+		window.location.replace('http://localhost:8081/employee.html');
 	} else if(user.userRole ==2){
-		//redirect to manager page
+		window.location.replace('http://localhost:8081/manager.html');
 	}
 	else{
 		//Who are you?
