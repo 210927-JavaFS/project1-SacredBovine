@@ -3,7 +3,6 @@ package com.revature;
 import com.revature.controllers.ReimbController;
 import com.revature.controllers.UserController;
 import com.revature.controllers.Controller;
-
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 
