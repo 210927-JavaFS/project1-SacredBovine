@@ -15,11 +15,9 @@ public class UserController implements Controller {
 	private UserService userService = new UserService();
 	
 	private Handler login = (ctx) -> {
-		System.out.println("Login attempt!");
 		LoginReq loginReq = ctx.bodyAsClass(LoginReq.class);
 		loginReq.hashPass();
 		LoginRes loginRes = userService.login(loginReq);	
-		System.out.println(loginRes);
 		if(loginRes!=null) {
 			ctx.json(loginRes);
 			ctx.status(200);

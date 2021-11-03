@@ -24,6 +24,7 @@ function verifySession(){
 	}else if(getCookie("role")=="2"){
 	}else window.location = 'http://localhost:8081/login.html';
 }
+
 function getCookie(val) {
   let name = val + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -43,18 +44,23 @@ function getCookie(val) {
 function addReimb(){
 	window.location = 'http://localhost:8081/addReimb.html';
 }
+
 function viewMyOpen(){
 	window.location = 'http://localhost:8081/viewMyOpen.html';
 }
+
 function viewMyAll(){
 	window.location = 'http://localhost:8081/viewMyAll.html';
 }
+
 function viewAllOpen(){
 	window.location = 'http://localhost:8081/viewAllOpen.html';
 }
+
 function viewByUser(){
 	window.location = 'http://localhost:8081/viewByUser.html';
 }
+
 function logout(){
 	window.location = 'http://localhost:8081/logout.html';
 }

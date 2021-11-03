@@ -5,25 +5,25 @@ import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
-@Table(name="ers_users")
+@Table(name="ers_user")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column (name="ers_users_id")
+	@Column (name="ers_user_id")
 	private int ersUserId;
-	@Column (unique=true, name="ers_username",insertable=false, updatable=false)
+	@Column (unique=true, name="ers_username")
 	private String ersUserName;
 	@Column (name="ers_password")
 	private String ersPassword;
-	@Column (name="ers_first_name")
+	@Column (name="user_first_name")
 	private String userFirstName;
-	@Column (name="ers_last_name")
+	@Column (name="user_last_name")
 	private String userLastName;
-	@Column (name="ers_email")
+	@Column (name="user_email")
 	private String userEmail;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="roleId", insertable=false, updatable=false)
+	@JoinColumn(name="roleid")//, insertable=false, updatable=false)
 	private UserRole userRole;
 	
 	public User() {

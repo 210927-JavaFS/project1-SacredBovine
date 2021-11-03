@@ -1,13 +1,6 @@
 const URL = "http://localhost:8081/";
 window.onload = verifySession();
 
-function verifySession(){
-	let cookieUser = getCookie("id");
-	if (cookieUser == "" ){
-		window.location = 'http://localhost:8081/login.html';
-	}
-}
-
 let addReimbBtn = document.getElementById("addReimbBtn");
 addReimbBtn.onclick = addReimb;
 let viewOpenBtn = document.getElementById("viewOpenBtn");
@@ -16,6 +9,17 @@ let viewAllBtn = document.getElementById("viewAllBtn");
 viewAllBtn.onclick = viewAll;
 let logoutBtn = document.getElementById("logoutBtn");
 logoutBtn.onclick = logout;
+
+function verifySession(){
+	let cookieUser = getCookie("id");
+	if (cookieUser == "" ){
+		window.location = 'http://localhost:8081/login.html';
+	}
+	if (getCookie("role")=="1"){
+	}else if(getCookie("role")=="2"){
+		window.location = 'http://localhost:8081/manager.html';
+	}else window.location = 'http://localhost:8081/login.html';
+}
 
 function getCookie(val) {
   let name = val + "=";

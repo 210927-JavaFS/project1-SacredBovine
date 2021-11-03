@@ -153,7 +153,7 @@ function populateReimbsTable(data){
 			break;		  
 		  case "reimbAmount" :
 			if(reimb[cell]!=null){
-				td.innerText = reimb[cell];
+				td.innerText = "$"+Number(reimb.reimbAmount).toFixed(2);
 				row.appendChild(td);
 			}			
 			break;		  

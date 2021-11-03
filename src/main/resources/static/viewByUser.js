@@ -3,7 +3,7 @@ let backBtn = document.getElementById("backBtn");
 backBtn.onclick = back;
 let findByUserBtn = document.getElementById("findByUserBtn");
 findByUserBtn.onclick = getAllByUser;
-window.onload = verifySession();
+//window.onload = verifySession();
 
 function back(){
 
@@ -150,7 +150,7 @@ function populateReimbsTable(reimbs){
 	td0.innerText = reimb.reimbId;
 	row.appendChild(td0);
 	let td1 = document.createElement("td");
-	td1.innerText = reimb.reimbAmount;
+	td1.innerText = "$"+Number(reimb.reimbAmount).toFixed(2);
 	row.appendChild(td1);
 	let td2 = document.createElement("td");
 	td2.innerText = reimb.reimbDescription;

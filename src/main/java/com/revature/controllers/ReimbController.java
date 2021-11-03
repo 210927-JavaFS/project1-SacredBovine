@@ -76,11 +76,12 @@ public class ReimbController implements Controller{
 		if(ctx.req.getSession(true)!=null) {
 		ReimbDTO reimbDTO = ctx.bodyAsClass(ReimbDTO.class);
 		Reimb reimb = reimbService.toReimb(reimbDTO);
-		System.out.println(reimb.toString());
+		//System.out.println(reimb.toString());
 		if(reimbService.addReimb(reimb)) {
 			ctx.status(201);
 			log.debug("ReimbController addReimb success");
 		}else {
+			log.warn("ReimbController addReimb failure");
 			ctx.status(500);
 		}}else {
 			ctx.status(404);

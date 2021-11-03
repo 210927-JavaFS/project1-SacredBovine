@@ -22,10 +22,10 @@ public class Reimb {
 	@Column (name="reimb_description")
 	private String reimbDescription;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="reimb_author", referencedColumnName="ers_users_id")
+	@JoinColumn(name="reimb_author", referencedColumnName="ers_user_id")
 	private User reimbAuthor;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="reimb_resolver", referencedColumnName="ers_users_id")
+	@JoinColumn(name="reimb_resolver", referencedColumnName="ers_user_id")
 	private User reimbResolver;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	@JoinColumn(name="statusId")//, insertable=false, updatable=false)

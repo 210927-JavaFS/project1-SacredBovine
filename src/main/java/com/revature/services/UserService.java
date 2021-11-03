@@ -18,7 +18,6 @@ public class UserService {
 			if(user.getErsUserName().equals(loginReq.getUsername())) {
 				if(user.getErsPassword().equals(loginReq.getPassword()))
 				{
-					System.out.println(user);
 					loginRes = new LoginRes(user.getErsUserId(), 
 							user.getUserFirstName()+" "+user.getUserLastName(),
 							user.getUserRole().getRoleId());
