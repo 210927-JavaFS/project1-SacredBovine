@@ -3,7 +3,7 @@ let backBtn = document.getElementById("backBtn");
 backBtn.onclick = back;
 let findByUserBtn = document.getElementById("findByUserBtn");
 findByUserBtn.onclick = getAllByUser;
-//window.onload = verifySession();
+window.onload = verifySession();
 
 function back(){
 
