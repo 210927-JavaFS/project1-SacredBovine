@@ -26,6 +26,7 @@ public class UserService {
 		}
 		return loginRes;
 	}
+	
 	public User findById(int userId) {
 		return userDAO.findById(userId);
 	}

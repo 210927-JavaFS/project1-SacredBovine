@@ -25,17 +25,17 @@ function verifySession(){
 	}else window.location = 'http://localhost:8081/login.html';
 }
 
-function getCookie(val) {
-  let name = val + "=";
+function getCookie(value) {
+  let name = value + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
-  let vals = decodedCookie.split(';');
-  for(let i = 0; i <vals.length; i++) {
-    let val = vals[i];
-    while (val.charAt(0) == ' ') {
-      val = val.substring(1);
+  let cookies = decodedCookie.split(';');
+  for(let i = 0; i <cookies.length; i++) {
+    let value = cookies[i];
+    while (value.charAt(0) == ' ') {
+      value = value.substring(1);
     }
-    if (val.indexOf(name) == 0) {
-      return val.substring(name.length, val.length);
+    if (value.indexOf(name) == 0) {
+      return value.substring(name.length, value.length);
     }
   }
   return "";

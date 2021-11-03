@@ -21,6 +21,7 @@ public class ReimbController implements Controller{
 			ctx.status(200);
 			log.debug("ReimbController findAllReimb success");
 		}else {
+			log.warn("ReimbController findAllReimb failure");
 			ctx.status(417);
 		}
 	};	
@@ -38,6 +39,7 @@ public class ReimbController implements Controller{
 				ctx.status(500);
 			}
 		} else {
+			log.warn("ReimbController findById failure");
 			ctx.status(401);
 		}
 	};
@@ -54,6 +56,7 @@ public class ReimbController implements Controller{
 			log.warn(e.getStackTrace().toString());
 			ctx.status(500);
 		}}else {
+			log.warn("ReimbController findByUser failure");
 			ctx.status(417);
 		}
 	};
@@ -68,6 +71,7 @@ public class ReimbController implements Controller{
 			log.warn(e.getStackTrace().toString());
 			ctx.status(500);
 		}}else {
+			log.warn("ReimbController findByOpen failure");
 			ctx.status(417);
 		}
 	};
@@ -76,7 +80,6 @@ public class ReimbController implements Controller{
 		if(ctx.req.getSession(true)!=null) {
 		ReimbDTO reimbDTO = ctx.bodyAsClass(ReimbDTO.class);
 		Reimb reimb = reimbService.toReimb(reimbDTO);
-		//System.out.println(reimb.toString());
 		if(reimbService.addReimb(reimb)) {
 			ctx.status(201);
 			log.debug("ReimbController addReimb success");
@@ -95,6 +98,7 @@ public class ReimbController implements Controller{
 			ctx.status(202);
 			log.debug("ReimbController updateReimb success");
 		}else {
+			log.warn("ReimbController updateReimb failure");
 			ctx.status(400);
 		}}
 	};

@@ -42,6 +42,7 @@ public class UserController implements Controller {
 				ctx.status(500);
 			}
 		} else {
+			log.warn("UserController findById failure");
 			ctx.status(401);
 		}
 	};

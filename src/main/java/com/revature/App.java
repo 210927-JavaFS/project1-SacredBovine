@@ -13,14 +13,6 @@ public class App {
 	private static Javalin app;
 
 	public static void main(String[] args) {	
-		/*User user = new User();
-		UserService us = new UserService();
-		us.findById(0);*/
-		
-		//HibernateUtil hu = new HibernateUtil();
-		//hu.getSession();
-		
-		
 		app = Javalin.create((config)->{
 			config.addStaticFiles("/static", Location.CLASSPATH);
 		});

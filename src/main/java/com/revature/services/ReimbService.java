@@ -2,8 +2,6 @@ package com.revature.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.revature.daos.ReimbDAO;
 import com.revature.daos.ReimbDAOImpl;
 import com.revature.models.Reimb;
@@ -13,8 +11,6 @@ import com.revature.models.ReimbType;
 import com.revature.models.User;
 
 public class ReimbService {
-
-	private static Logger log = LoggerFactory.getLogger(ReimbService.class);
 	private ReimbDAO reimbDAO = new ReimbDAOImpl();
 	private UserService userService = new UserService();
 	

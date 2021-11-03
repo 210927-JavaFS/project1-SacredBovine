@@ -23,14 +23,12 @@ public class User {
 	@Column (name="user_email")
 	private String userEmail;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="roleid")//, insertable=false, updatable=false)
+	@JoinColumn(name="roleid")
 	private UserRole userRole;
 	
 	public User() {
 		super();
 	}
-	
-	
 	public User(String ersUserName, String ersPassword, String userFirstName, String userLastName, String userEmail,
 			UserRole userRole) {
 		super();
@@ -41,8 +39,6 @@ public class User {
 		this.userEmail = userEmail;
 		this.userRole = userRole;
 	}
-
-
 	public User(int ersUserId, String ersUserName, String ersPassword, String userFirstName, String userLastName,
 			String userEmail, UserRole userRole) {
 		super();
@@ -54,6 +50,7 @@ public class User {
 		this.userEmail = userEmail;
 		this.userRole = userRole;
 	}
+	
 	public int getErsUserId() {
 		return ersUserId;
 	}
@@ -97,8 +94,6 @@ public class User {
 		this.userRole = userRole;
 	}
 	
-	
-	
 	@Override
 	public String toString() {
 		return "User [ersUserID=" + ersUserId + ", " + (ersUserName != null ? "ersUserName=" + ersUserName + ", " : "")
@@ -107,10 +102,12 @@ public class User {
 				+ (userEmail != null ? "userEmail=" + userEmail + ", " : "")
 				+ (userRole != null ? "userRole=" + userRole.toString() : "") + "]";
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(ersPassword, ersUserId, ersUserName, userEmail, userFirstName, userLastName, userRole);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -125,6 +122,4 @@ public class User {
 				&& Objects.equals(userFirstName, other.userFirstName)
 				&& Objects.equals(userLastName, other.userLastName) && Objects.equals(userRole, other.userRole);
 	}
-
-	
 }

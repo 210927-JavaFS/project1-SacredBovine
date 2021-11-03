@@ -12,6 +12,7 @@ import com.revature.models.Reimb;
 public class ReimbDAOImpl implements ReimbDAO {
 	private static Logger log = LoggerFactory.getLogger(ReimbDAOImpl.class);
 	
+	@SuppressWarnings("unchecked")
 	public List<Reimb> findAll(){
 		Session session = HibernateUtil.getSession();
 		return session.createQuery("FROM Reimb").list();

@@ -1,9 +1,7 @@
 package com.revature.models;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
-
 import javax.persistence.*;
 
 @Entity
@@ -28,18 +26,15 @@ public class Reimb {
 	@JoinColumn(name="reimb_resolver", referencedColumnName="ers_user_id")
 	private User reimbResolver;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="statusId")//, insertable=false, updatable=false)
+	@JoinColumn(name="statusId")
 	private ReimbStatus reimbStatus;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	@JoinColumn(name="typeId") //, insertable=false, updatable=false
+	@JoinColumn(name="typeId") 
 	private ReimbType reimbType;
 	
 	public Reimb() {
 		super();
 	}
-	
-	
-
 	public Reimb(double reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
 			ReimbType reimbType) {
 		super();
@@ -49,9 +44,6 @@ public class Reimb {
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
-
-
-
 	public Reimb(int reimbId, double reimbAmount, String reimbDescription, User reimbAuthor, ReimbStatus reimbStatus,
 			ReimbType reimbType) {
 		super();
@@ -62,9 +54,6 @@ public class Reimb {
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
-
-
-
 	public Reimb(double reimbAmount, Timestamp reimbSubmitted, String reimbDescription, User reimbAuthor,
 			ReimbStatus reimbStatus, ReimbType reimbType) {
 		super();
@@ -75,8 +64,6 @@ public class Reimb {
 		this.reimbStatus = reimbStatus;
 		this.reimbType = reimbType;
 	}
-
-
 
 	public int getReimbId() {
 		return reimbId;
@@ -132,11 +119,13 @@ public class Reimb {
 	public void setReimbType(ReimbType reimbType) {
 		this.reimbType = reimbType;
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(reimbAmount, reimbAuthor, reimbDescription, reimbId, reimbResolved, reimbResolver,
 				reimbStatus, reimbSubmitted, reimbType);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -152,6 +141,7 @@ public class Reimb {
 				&& Objects.equals(reimbResolver, other.reimbResolver) && Objects.equals(reimbStatus, other.reimbStatus)
 				&& Objects.equals(reimbSubmitted, other.reimbSubmitted) && Objects.equals(reimbType, other.reimbType);
 	}
+	
 	@Override
 	public String toString() {
 		return "Reimb [reimbId=" + reimbId + ", reimbAmount=" + reimbAmount + ", "
@@ -163,7 +153,4 @@ public class Reimb {
 				+ (reimbStatus != null ? "reimbStatus=" + reimbStatus + ", " : "")
 				+ (reimbType != null ? "reimbType=" + reimbType : "") + "]";
 	}
-	
-	
-
 }
