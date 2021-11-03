@@ -30,12 +30,6 @@ public class ReimbServiceTest {
 	public static ReimbType type;
 	public static List<Reimb> reimbs;
 
-	/* 
-	 * findAll
-	 * findByOpen
-	 * updateReimb
-	 * delete
-	 */
 	@BeforeAll
 	public static void setService() {
 		reimbService = new ReimbService();
@@ -77,10 +71,7 @@ public class ReimbServiceTest {
 	@Test
 	public void test5FindById() {
 		reimb2 = reimbService.findByUser(user.getErsUserId()).get(0);
-		reimb1.setReimbId(reimb2.getReimbId());
-		reimb1.setReimbStatus(reimb2.getReimbStatus());
-		reimb2 = new Reimb();
-		reimb2 = reimbService.findById(reimb1.getReimbId());
+		reimb1 = reimbService.findById(reimb2.getReimbId());
 		assertEquals(reimb1,reimb2);
 	}
 	@Test	
